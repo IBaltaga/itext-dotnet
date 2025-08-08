@@ -1025,6 +1025,17 @@ namespace iText.Layout.Renderer {
                         ), crossSize);
                     flexItems.Add(flexItemInfo);
                 }
+                else if (renderer is AreaBreakRenderer)
+                {
+                    var divWithPageBreak = new Element.Div();
+                    divWithPageBreak.SetProperty(Property.AREA_BREAK_TYPE, AreaBreakType.NEXT_PAGE);
+                    AbstractRenderer divRendererWithPageBreak = new DivRenderer(divWithPageBreak);
+
+                    FlexUtil.FlexItemCalculationInfo flexItemInfo = new FlexUtil.FlexItemCalculationInfo(divRendererWithPageBreak
+                            , 1, 1, 1, flexContainerMainSize, true, IsColumnDirection(flexContainerRenderer
+                            ), crossSize);
+                    flexItems.Add(flexItemInfo);
+                }
             }
             return flexItems;
         }
